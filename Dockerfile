@@ -10,11 +10,11 @@ RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && tar xfvz "$downloadDir/lighttpd2-master.tar.gz" -C "$buildDir" \
  && rm -rf "$downloadDir" \
  && cd "$buildDir/lighttpd2-master" \
- && ./autogen.sh \
- && ./configure --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd-2.0.0 \
- && make \
- && make install \
-# && perl contrib/create-mimetypes.conf.pl > "$REV_CONFIG_DIR" \
+# && ./autogen.sh \
+# && ./configure --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd-2.0.0 \
+# && make \
+# && make install \
+ && perl contrib/create-mimetypes.conf.pl > "$REV_CONFIG_DIR" \
  && cd / \
  && rm -rf "$buildDir" \
  && apk del .build-dependencies
