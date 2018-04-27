@@ -14,6 +14,7 @@ RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
 # && ./configure --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd-2.0.0 \
 # && make \
 # && make install \
+ && mkdir -p "$REV_CONFIG_DIR" \
  && perl contrib/create-mimetypes.conf.pl > "$REV_CONFIG_DIR/mimetypes.conf" \
  && cd / \
  && rm -rf "$buildDir" \
