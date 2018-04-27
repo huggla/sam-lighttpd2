@@ -3,7 +3,7 @@ FROM huggla/alpine
 ENV REV_CONFIG_DIR="/etc/lighttpd2"
 
 RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
- && apk --no-cache add --virtual .build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev perl \
+ && apk --no-cache add --virtual .build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev perl mailcap \
  && downloadDir="$(mktemp -d)" \
  && buildDir="$(mktemp -d)" \
  && wget https://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz -O "$downloadDir/lighttpd2-master.tar.gz" \
