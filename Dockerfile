@@ -5,24 +5,24 @@ ARG APKS="glib libev ragel lua zlib libbz2 libressl2.7-libssl"
 RUN apk --no-cache --root /rootfs add $APKS \
  && apk --no-cache add --virtual .build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev libressl-dev perl mailcap \
  && downloadDir="$(mktemp -d)" \
- && buildDir="/tmp/build" \
+ && buildDir="$(mktemp -d)" \
  && wget https://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz -O "$downloadDir/lighttpd2-master.tar.gz" \
- && tar xfvz "$downloadDir/lighttpd2-master.tar.gz" -C "$buildDir" \
+ && tar -xvpz --strip-components 1 -f "$downloadDir/lighttpd2-master.tar.gz" -C "$buildDir" \
  && rm -rf "$downloadDir" \
- && cd "$buildDir/lighttpd2-master" \
+ && cd "$buildDir" \
  && ./autogen.sh \
- && ./configure --prefix=/usr/local --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd-2.0.0 \
+ && ./configure --prefix=/usr/local --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/local/include/lighttpd-2.0.0 \
  && make \
  && make install \
-# && mv /usr/local/sbin/lighttpd2 "$BIN_DIR/lighttpd2" \
-# && mkdir -p "$BEV_CONFIG_DIR" \
-# && perl contrib/create-mimetypes.conf.pl > "$BEV_CONFIG_DIR/mimetypes.conf" \
-# && mv contrib/default.html "$BEV_WWW_DIR/default.html" \
+ && mv /usr/local/sbin/lighttpd2 /usr/local/bin/ \
+ && perl $buildDir/contrib/create-mimetypes.conf.pl > "/rootfs/mimetypes.conf" \
+ && mv $buildDir/contrib/default.html "/rootfs/default.html" \
  && cd / \
-# && rm -rf "$buildDir" \
+ && rm -rf "$buildDir" \
+ && cp -a /usr/local /rootfs/usr/ \
  && apk --no-cache del .build-dependencies
 
-#FROM huggla/base
+FROM huggla/base
 
 ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_WWW_DIR="/var/www" \
