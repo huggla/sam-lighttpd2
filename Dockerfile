@@ -1,5 +1,6 @@
 ARG TAG="20181113-edge"
-ARG EXECUTABLES=/usr/sbin/lighttpd2
+ARG BASEIMAGE="huggla/base:test"
+ARG EXECUTABLES="/usr/sbin/lighttpd2"
 
 #---------------Don't edit----------------
 FROM ${CONTENTIMAGE1:-scratch} as content1
