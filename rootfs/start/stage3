@@ -1,0 +1,11 @@
+# Set in stage2:
+# ---------------------------------------------------------
+# set -e +a +m +s +i -f
+# isFirstRun
+# VAR_*
+# All functions in /start/functions
+
+if [ "$isFirstRun" == "true" ]
+then
+   sed -i 's/www-data/$VAR_LINUX_USER/g' "$VAR_CONFIG_DIR/angel.conf"
+fi
