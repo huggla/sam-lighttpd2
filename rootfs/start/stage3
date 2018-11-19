@@ -10,4 +10,5 @@ then
    sed -i "s/www-data/$VAR_LINUX_USER/g" "$VAR_CONFIG_DIR/angel.conf"
    sed -i "s/max_open_files 16384;/max_open_files $VAR_MAX_OPEN_FILES;/" "$VAR_CONFIG_DIR/angel.conf"
    sed -i "s|/var/www|$VAR_WWW_DIR|g "$VAR_CONFIG_DIR/lighttpd.conf"
+   eval $VAR_LIGHTTPD2_CONF > /apa
 fi
