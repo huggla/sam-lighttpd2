@@ -25,7 +25,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     \} \
     else \{ \
        include \"/etc/lighttpd2/mimetypes.conf\"; \
-       docroot \"/var/www\"; \
+       docroot \"\$VAR_WWW_DIR"; \
        index [ \"index.php\", \"index.html\", \"index.htm\", \"default.htm\", \"index.lighttpd.html\" ]; \
        static; \
        if request.is_handled \{ \
