@@ -1,4 +1,7 @@
 ARG TAG="20181113-edge"
+ARG CONTENTIMAGE1="huggla/lighttpd2:$TAG"
+ARG CONTENTSOURCE1="/lighttpd2"
+ARG CONTENTDESTINATION1="/"
 ARG BASEIMAGE="huggla/base:test"
 ARG BUILDIMAGE="huggla/build"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
@@ -17,7 +20,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_LINUX_USER="www-user" \
     VAR_MAX_OPEN_FILES="16384" \
     VAR_param1_setup="\{ module_load [ \"mod_fastcgi\", \"mod_balance\", \"mod_deflate\" ]; listen \"0.0.0.0:80\"; listen \"[::]:80\"; static.exclude_extensions [ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ]; \}"
-    VAR_param2_if="request.query =~ \"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" { \
+    VAR_param2_if="request.query=~\"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" { \
        balance.rr \{ fastcgi \"unix:/run/fastcgi/fastcgi.sock\"; \}; \
        if request.is_handled \{ \
           header.remove \"Content-Length\"; \
