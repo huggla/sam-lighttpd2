@@ -1,5 +1,5 @@
 ARG TAG="20181113-edge"
-ARG CONTENTIMAGE1="huggla/lighttpd2:$TAG"
+ARG CONTENTIMAGE1="huggla/lighttpd2"
 ARG CONTENTSOURCE1="/lighttpd2"
 ARG CONTENTDESTINATION1="/"
 ARG BASEIMAGE="huggla/base:test"
