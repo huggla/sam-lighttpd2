@@ -9,7 +9,7 @@ ARG EXECUTABLES="/usr/sbin/lighttpd2"
 #---------------Don't edit----------------
 FROM ${CONTENTIMAGE1:-scratch} as content1
 FROM ${CONTENTIMAGE2:-scratch} as content2
-FROM ${BASEIMAGE:-huggla/base:$TAG} as base
+FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 FROM ${BUILDIMAGE:-huggla/build:$TAG} as build
 FROM ${BASEIMAGE:-huggla/base:$TAG} as image
 COPY --from=build /imagefs /
@@ -18,6 +18,7 @@ COPY --from=build /imagefs /
 ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_WWW_DIR="/var/www" \
     VAR_LINUX_USER="www-user" \
+    VAR_FINAL_COMMAND="lighttpd2 -c \"\$VAR_CONFIG_DIR/angel.conf\"" \
     VAR_MAX_OPEN_FILES="16384" \
     VAR_param1_setup="\{ module_load [ \"mod_fastcgi\", \"mod_balance\", \"mod_deflate\" ]; listen \"0.0.0.0:80\"; listen \"[::]:80\"; static.exclude_extensions [ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ]; \}" \
     VAR_param2_if="request.query=~\"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" { \
