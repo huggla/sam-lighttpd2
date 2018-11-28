@@ -3,7 +3,6 @@ ARG CONTENTIMAGE1="huggla/lighttpd2"
 ARG CONTENTSOURCE1="/lighttpd2"
 ARG CONTENTDESTINATION1="/"
 ARG BASEIMAGE="huggla/base:test"
-ARG BUILDIMAGE="huggla/build"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
 
 #---------------Don't edit----------------
