@@ -7,7 +7,7 @@
 
 if [ "$isFirstRun" == "true" ]
 then
-   configFromVarGroup param > "$VAR_CONFIG_DIR/lighttpd.conf"
+   configFromVarGroup param noEqual > "$VAR_CONFIG_DIR/lighttpd.conf"
    sed -i "s/www-data/$VAR_LINUX_USER/g" "$VAR_CONFIG_DIR/angel.conf"
    sed -i "s/max_open_files 16384;/max_open_files $VAR_MAX_OPEN_FILES;/" "$VAR_CONFIG_DIR/angel.conf"
    echo "config \"$VAR_CONFIG_DIR/lighttpd.conf\";" >> "$VAR_CONFIG_DIR/angel.conf"
