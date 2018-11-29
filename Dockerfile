@@ -4,6 +4,7 @@ ARG CONTENTSOURCE1="/lighttpd2"
 ARG CONTENTDESTINATION1="/"
 ARG BASEIMAGE="huggla/base:test"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
+ARG REMOVEFILES="/etc/lighttpd2"
 
 #---------------Don't edit----------------
 FROM ${CONTENTIMAGE1:-scratch} as content1
@@ -20,7 +21,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_FINAL_COMMAND="lighttpd2 -c \"\$VAR_CONFIG_DIR/angel.conf\"" \
     VAR_MAX_OPEN_FILES="16384" \
     VAR_param1_setup="\{ module_load [ \"mod_fastcgi\", \"mod_balance\", \"mod_deflate\" ]; listen \"0.0.0.0:80\"; listen \"[::]:80\"; static.exclude_extensions [ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ]; \}" \
-    VAR_param2_if="request.query=~\"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" { \
+    VAR_param2_if="request.query=~\"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" { \\n\
        balance.rr \{ fastcgi \"unix:/run/fastcgi/fastcgi.sock\"; \}; \
        if request.is_handled \{ \
           header.remove \"Content-Length\"; \
