@@ -37,7 +37,10 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
              deflate; \
           \} \
        \} \
-    \}"
+    \}" \
+    VAR_angel1_user="'\$VAR_LINUX_USER';" \
+    VAR_angel2_max_open_files="16384;" \
+    VAR_angel3_copy_env="[ 'PATH' ];"
      
 #---------------Don't edit----------------
 USER starter
