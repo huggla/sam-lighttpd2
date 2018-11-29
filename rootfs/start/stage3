@@ -8,5 +8,5 @@
 if [ "$isFirstRun" == "true" ]
 then
    configFromVarGroup angel noEqual > "$VAR_CONFIG_DIR/angel.conf"
-   configFromVarGroup param noEqual > "$VAR_CONFIG_DIR/lighttpd.conf"
+   configFromVarGroup setup noEqual > "$VAR_CONFIG_DIR/lighttpd.conf"
 fi
