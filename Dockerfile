@@ -2,7 +2,7 @@ ARG TAG="20181128"
 ARG CONTENTIMAGE1="huggla/lighttpd2"
 ARG CONTENTSOURCE1="/lighttpd2"
 ARG CONTENTDESTINATION1="/"
-ARG BASEIMAGE="huggla/base:test"
+ARG BASEIMAGE="huggla/base:test2"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
 ARG REMOVEFILES="/etc/lighttpd2"
 
