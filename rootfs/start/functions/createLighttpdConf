@@ -1,0 +1,5 @@
+createLighttpdConf(){
+   setup_begin='{\n'
+   setup_end='}\n\n'
+   configFromVarGroup setup noEqual > "$VAR_CONFIG_DIR/lighttpd.conf"
+}
