@@ -2,7 +2,7 @@ createLighttpdConf(){
    local file="$VAR_CONFIG_DIR/lighttpd.conf"
    local setup_begin=""
    local setup_end=";"
-   echo -e "setup {\n" > "$file"
+   echo -e "setup {" > "$file"
    configFromVarGroup setup noEqual >> "$file"
    echo -e "}\n" >> "$file"
 }
