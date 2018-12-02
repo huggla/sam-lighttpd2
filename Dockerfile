@@ -26,21 +26,24 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup1_module_load="[ \"mod_fastcgi\", \"mod_balance\", \"mod_deflate\" ]" \
     VAR_setup2_listen="\"0.0.0.0:80\"" \
     VAR_setup3_listen="\"[::]:80\"" \
-    VAR_setup4_static__exclude_extensions="[ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ];"
+    VAR_setup4_static__exclude_extensions="[ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ];" \
     VAR_conf1_if=\
       "request.query=~\"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" {\\n\
-       balance.rr { fastcgi \"unix:/run/fastcgi/fastcgi.sock\"; };\\n\
-       if request.is_handled {\\n\
-          header.remove \"Content-Length\";\\n\
-       }"\
-    VAR_conf2_else="\\n\
-       include \"\$VAR_CONFIG_DIR/mimetypes.conf\";\\n\
-       docroot \"\$VAR_WWW_DIR\";\\n\
-       index [ \"index.php\", \"index.html\", \"index.htm\", \"default.htm\", \"index.lighttpd.html\" ];\\n\
-       static;\\n\
-       if request.is_handled {\\n\
-          if response.header[\"Content-Type\"] =~ \"^(.*/javascript|text/.*)(;|\$)\" {\\n\
-             deflate;\\n\
+          balance.rr { fastcgi \"unix:/run/fastcgi/fastcgi.sock\"; };\\n\
+          if request.is_handled {\\n\
+             header.remove \"Content-Length\";\\n\
+          }\\n\
+       }" \
+    VAR_conf2_else=\
+      "{\\n\
+          include \"\$VAR_CONFIG_DIR/mimetypes.conf\";\\n\
+          docroot \"\$VAR_WWW_DIR\";\\n\
+          index [ \"index.php\", \"index.html\", \"index.htm\", \"default.htm\", \"index.lighttpd.html\" ];\\n\
+          static;\\n\
+          if request.is_handled {\\n\
+             if response.header[\"Content-Type\"] =~ \"^(.*/javascript|text/.*)(;|\$)\" {\\n\
+                deflate;\\n\
+             }\\n\
           }\\n\
        }"
      
