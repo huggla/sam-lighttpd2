@@ -1,5 +1,5 @@
 createAngelConf(){
    local angel_begin=""
    local angel_end=";"
-   configFromVarGroup angel noEqual > "$VAR_CONFIG_DIR/angel.conf"
+   configFromVarGroup angel > "$VAR_CONFIG_DIR/angel.conf"
 }
