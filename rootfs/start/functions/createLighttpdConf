@@ -6,4 +6,6 @@ createLighttpdConf(){
    echo -e "setup {" > "$file"
    configFromVarGroup setup >> "$file"
    echo -e "}\n" >> "$file"
+   local conf_begin=""
+   configFromVarGroup conf >> "$file"
 }
