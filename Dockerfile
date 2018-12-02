@@ -25,8 +25,8 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_angel4_copy_env="[ \"PATH\" ]" \
     VAR_setup1_module_load="[ \"mod_fastcgi\", \"mod_balance\", \"mod_deflate\" ]" \
     VAR_setup2_listen="\"0.0.0.0:80\"" \
-    VAR_setup3_listen="\"[::]:80\""
-#    VAR_setup4_static__exclude_extensions="[ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ];" \
+    VAR_setup3_listen="\"[::]:80\"" \
+    VAR_setup4_static__exclude_extensions="[ \".php\", \".pl\", \".fcgi\", \"~\", \".inc\" ];"
 #    VAR_conf1_if="request.query=~\"(map|MAP)=\w+((\.|/)?\w)*(&.+)?\$\" { \\n\
 #       balance.rr \{ fastcgi \"unix:/run/fastcgi/fastcgi.sock\"; \}; \
 #       if request.is_handled \{ \
