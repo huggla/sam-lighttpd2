@@ -36,8 +36,8 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
 "         header.remove 'Content-Length';\\\n"\
 "      }\\\n"\
 "   }" \
-    VAR_conf2_else="{\\n"\
-"      include '\$VAR_CONFIG_DIR/mimetypes.conf';\\n"\
+    VAR_conf2_else="{\n"\
+"      include '\$VAR_CONFIG_DIR/mimetypes.conf';\n"\
 "      docroot '\$VAR_WWW_DIR';\\n"\
 "      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html' ];\\n"\
 "      static;\\n"\
