@@ -29,7 +29,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup2_listen="'unix:\$VAR_HTTP_SOCKET_FILE'" \
     VAR_setup3_listen="'0.0.0.0:80'" \
     VAR_setup4_listen="'[::]:80'" \
-    VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ];" \
+    VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
     VAR_conf1_if="request.query=~'(map|MAP)=\\w+((\.|/)?\\w)*(&.+)?\$' {\\n"\
 "      balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };\\n"\
 "      if request.is_handled {\\n"\
