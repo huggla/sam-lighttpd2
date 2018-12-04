@@ -5,7 +5,7 @@ ARG CONTENTDESTINATION1="/"
 ARG BASEIMAGE="huggla/base:test2"
 ARG RUNDEPS="glib libev lua libbz2"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
-ARG REMOVEFILES="/etc/lighttpd2"
+ARG REMOVEFILES="/etc/lighttpd2/angel.conf /etc/lighttpd2/lighttpd.conf"
 
 #---------------Don't edit----------------
 FROM ${CONTENTIMAGE1:-scratch} as content1
