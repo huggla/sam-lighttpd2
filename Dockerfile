@@ -3,7 +3,7 @@ ARG CONTENTIMAGE1="huggla/lighttpd2"
 ARG CONTENTSOURCE1="/lighttpd2"
 ARG CONTENTDESTINATION1="/"
 ARG BASEIMAGE="huggla/base:test2"
-ARG RUNDEPS="glib"
+ARG RUNDEPS="glib libev"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
 ARG REMOVEFILES="/etc/lighttpd2"
 
