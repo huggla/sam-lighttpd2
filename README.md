@@ -6,7 +6,7 @@ Lighttpd2 on Alpine. Listens, by default, on port 8080 internally.
 ## Environment variables
 ### pre-set runtime variables
 * VAR_LINUX_USER (www-user)
-* VAR_CONFIG_DIR (/etc/lighttpd)
+* VAR_CONFIG_DIR (/etc/lighttpd2)
 * VAR_FINAL_COMMAND
 
 ### Optional runtime variables
