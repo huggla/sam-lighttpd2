@@ -1,7 +1,6 @@
 ARG TAG="20181204"
 ARG CONTENTIMAGE1="huggla/lighttpd2:$TAG"
 ARG CONTENTSOURCE1="/lighttpd2"
-ARG CONTENTDESTINATION1="/"
 ARG RUNDEPS="glib libev lua libbz2"
 ARG EXECUTABLES="/usr/sbin/lighttpd2"
 ARG REMOVEFILES="/etc/lighttpd2/angel.conf /etc/lighttpd2/lighttpd.conf"
