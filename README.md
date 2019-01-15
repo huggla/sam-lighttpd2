@@ -1,7 +1,7 @@
-**Note! I use Docker latest tag for development, which means that it isn't allways working. Date tags are stable.**
-
 # lighttpd2-alpine
 Lighttpd2 on Alpine. Listens, by default, on port 8080 internally.
+
+All tags: Lighttpd2 master from Github, Alpine Edge.
 
 ## Environment variables
 ### pre-set runtime variables
