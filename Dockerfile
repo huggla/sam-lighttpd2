@@ -1,4 +1,4 @@
-ARG TAG="20190114"
+ARG TAG="20190115"
 ARG CONTENTIMAGE1="huggla/lighttpd2:$TAG"
 ARG CONTENTSOURCE1="/lighttpd2"
 ARG RUNDEPS="glib libev lua libbz2"
