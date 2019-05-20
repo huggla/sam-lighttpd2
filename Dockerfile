@@ -2,7 +2,7 @@ ARG TAG="20190517"
 ARG CONTENTIMAGE1="huggla/lighttpd2:$TAG"
 ARG CONTENTSOURCE1="/app"
 ARG RUNDEPS="glib libev lua libbz2"
-ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
+ARG EXECUTABLES="/usr/sbin/lighttpd2"
 ARG REMOVEFILES="/etc/lighttpd2/angel.conf /etc/lighttpd2/lighttpd.conf"
 
 #--------Generic template (don't edit)--------
