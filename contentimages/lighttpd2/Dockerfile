@@ -1,4 +1,4 @@
-ARG TAG="20190517"
+ARG TAG="20190802"
 ARG DESTDIR="/app"
 
 FROM huggla/alpine as alpine
