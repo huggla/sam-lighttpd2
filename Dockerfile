@@ -1,4 +1,4 @@
-ARG TAG="20190517"
+ARG TAG="20190802"
 ARG CONTENTIMAGE1="huggla/lighttpd2:$TAG"
 ARG CONTENTSOURCE1="/app"
 ARG RUNDEPS="glib libev lua libbz2"
@@ -11,7 +11,7 @@ FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${INITIMAGE:-${BASEIMAGE:-huggla/base:$TAG}} as init
 FROM ${BUILDIMAGE:-huggla/build} as build
-FROM ${BASEIMAGE:-huggla/base:$TAG} as image
+FROM ${BASEIMAGE:-huggla/base:$TAG} as final
 ARG CONTENTSOURCE1
 ARG CONTENTSOURCE1="${CONTENTSOURCE1:-/}"
 ARG CONTENTDESTINATION1
@@ -35,7 +35,7 @@ ARG GID0WRITABLES
 ARG GID0WRITABLESRECURSIVE
 ARG LINUXUSEROWNED
 ARG LINUXUSEROWNEDRECURSIVE
-COPY --from=build /imagefs /
+COPY --from=build /finalfs /
 #---------------------------------------------
 
 ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
