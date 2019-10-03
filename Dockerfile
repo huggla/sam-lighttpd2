@@ -11,7 +11,7 @@ ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git"
 ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
 "cd lighttpd2 "\
-"&& autogen.sh "\
+"&& ./autogen.sh "\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2" '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& mv contrib/mimetypes.conf "$DESTDIR/" '\
