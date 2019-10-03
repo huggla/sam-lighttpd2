@@ -14,8 +14,8 @@ ARG BUILDCMDS=\
 "&& autogen.sh "\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2 '\
 '&& eval "$COMMON_MAKECMDS" '\
-'&& mv contrib/default.html contrib/*.conf "$DESTDIR/" '\
-'&& gzip "$DESTDIR/default.html" $DESTDIR/*.conf'
+'&& mv contrib/mimetypes.conf "$DESTDIR/" '\
+'&& gzip "$DESTDIR/mimetypes.conf"'
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
@@ -49,31 +49,16 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_angel2_max_open_files="16384" \
     VAR_angel3_copy_env="[ 'PATH' ]" \
     VAR_angel4_allow_listen="'unix:\$VAR_HTTP_SOCKET_FILE'" \
-    VAR_angel5_allow_listen="'0.0.0.0/0:8080'" \
-    VAR_angel6_allow_listen="'[::/0]:8080'" \
+    VAR_angel5_allow_listen="'0.0.0.0/0:4430'" \
+    VAR_angel6_allow_listen="'0.0.0.0/0:8080'" \
     VAR_angel7_allow_listen="'unix:\$VAR_FASTCGI_SOCKET_FILE'" \
-    VAR_setup1_module_load="[ 'mod_fastcgi', 'mod_balance', 'mod_deflate' ]" \
+    VAR_setup1_module_load="[ 'mod_fastcgi', 'mod_balance' ]" \
     VAR_setup2_listen="'unix:\$VAR_HTTP_SOCKET_FILE'" \
-    VAR_setup3_listen="'0.0.0.0:8080'" \
-    VAR_setup4_listen="'[::]:8080'" \
+    VAR_setup3_listen="'0.0.0.0:4430'" \
+    VAR_setup4_listen="'0.0.0.0:8080'" \
     VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
-    VAR_conf1_if="request.query=~'(map|MAP)=\\\w+((\.|/)?\\\w)*(&.+)?\$' {\\\n"\
-"      balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };\\\n"\
-"      if request.is_handled {\\\n"\
-"         header.remove 'Content-Length';\\\n"\
-"      }\\\n"\
-"   }" \
-    VAR_conf2_else="{\\\n"\
-"      include '\$VAR_CONFIG_DIR/mimetypes.conf';\\\n"\
-"      docroot '\$VAR_WWW_DIR';\\\n"\
-"      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html' ];\\\n"\
-"      static;\\\n"\
-"      if request.is_handled {\\\n"\
-"         if response.header['Content-Type'] =~ '^(.*/javascript|text/.*)(;|\$)' {\\\n"\
-"            deflate;\\\n"\
-"         }\\\n"\
-"      }\\\n"\
-"   }"
+    VAR_conf1_balance__rr="{ fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };" \
+    VAR_conf2_if="request.is_handled { header.remove 'Content-Length'; }"
      
 # Generic template (don't edit) <BEGIN>
 USER starter
