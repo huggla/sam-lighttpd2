@@ -45,7 +45,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_FASTCGI_SOCKET_FILE="/run/fastcgi/fastcgi.sock" \
     VAR_LINUX_USER="www-user" \
     VAR_FINAL_COMMAND="lighttpd2 -c '\$VAR_CONFIG_DIR/angel.conf'" \
-    VAR_FCGI_ONLY="no" \
+    VAR_OPERATION_MODE="normal" \
     VAR_angel1_config="'\$VAR_CONFIG_DIR/lighttpd.conf'" \
     VAR_angel2_max_open_files="16384" \
     VAR_angel3_copy_env="[ 'PATH' ]" \
@@ -58,8 +58,8 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup3_listen="'0.0.0.0:4430'" \
     VAR_setup4_listen="'0.0.0.0:8080'" \
     VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
-    VAR_conf1_balance__rr="{ fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };" \
-    VAR_conf2_if="request.is_handled { header.remove 'Content-Length'; }"
+    VAR_mode_fcgi="balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; }; if request.is_handled { header.remove 'Content-Length'; }" \
+    VAR_mode_normal="request.is_handled { header.remove 'Content-Length'; }"
      
 # Generic template (don't edit) <BEGIN>
 USER starter
