@@ -45,6 +45,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_FASTCGI_SOCKET_FILE="/run/fastcgi/fastcgi.sock" \
     VAR_LINUX_USER="www-user" \
     VAR_FINAL_COMMAND="lighttpd2 -c '\$VAR_CONFIG_DIR/angel.conf'" \
+    VAR_FCGI_ONLY="no" \
     VAR_angel1_config="'\$VAR_CONFIG_DIR/lighttpd.conf'" \
     VAR_angel2_max_open_files="16384" \
     VAR_angel3_copy_env="[ 'PATH' ]" \
