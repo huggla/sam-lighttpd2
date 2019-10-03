@@ -15,4 +15,8 @@ then
    then
       createLighttpdConf
    fi
+   if [ ! -s "$VAR_CONFIG_DIR/mimetypes.conf" ]
+   then
+      zcat /mimetypes.conf.gz > "$VAR_CONFIG_DIR/mimetypes.conf"
+   fi
 fi
