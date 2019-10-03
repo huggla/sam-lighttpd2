@@ -58,8 +58,19 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup3_listen="'0.0.0.0:4430'" \
     VAR_setup4_listen="'0.0.0.0:8080'" \
     VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
-    VAR_mode_fcgi="balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; }; if request.is_handled { header.remove 'Content-Length'; }" \
-    VAR_mode_normal="request.is_handled { header.remove 'Content-Length'; }"
+    VAR_mode_fcgi=\
+"      balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };\\\n"\
+"      if request.is_handled { header.remove 'Content-Length'; }\\\n"\
+    VAR_mode_normal=\
+"      include '\$VAR_CONFIG_DIR/mimetypes.conf';\\\n"\
+"      docroot '\$VAR_WWW_DIR';\\\n"\
+"      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html' ];\\\n"\
+"      static;\\\n"\
+"      if request.is_handled {\\\n"\
+"         if response.header['Content-Type'] =~ '^(.*/javascript|text/.*)(;|\$)' {\\\n"\
+"            deflate;\\\n"\
+"         }\\\n"\
+"      }\\\n"\
      
 # Generic template (don't edit) <BEGIN>
 USER starter
