@@ -7,7 +7,7 @@ ARG TAG="20190927"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
 ARG BUILDDEPS="libev-dev lua-dev ragel zlib-dev libressl-dev perl mailcap ssl_client"
-ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz"
+ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git"
 ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
 "cd lighttpd2 "\
