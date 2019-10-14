@@ -59,7 +59,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup4_listen="'0.0.0.0:8080'" \
     VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
     VAR_mode_fcgi=\
-"      balance.rr { fastcgi 'unix:$VAR_FASTCGI_SOCKET_FILE'; };\\\n"\
+"      balance.rr \\{ fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; \\};\\\n"\
 "      if request.is_handled { header.remove 'Content-Length'; }" \
     VAR_mode_normal=\
 "      include '\$VAR_CONFIG_DIR/mimetypes.conf';\\\n"\
