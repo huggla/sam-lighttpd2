@@ -6,5 +6,6 @@ createLighttpdConf(){
    echo -e "setup {" > "$file"
    configFromVarGroup setup >> "$file"
    echo -e "}\n" >> "$file"
-   eval "echo -e \"\$VAR_mode_$VAR_OPERATION_MODE\"" >> "$file"
+   eval "local modeConf=\$VAR_mode_$VAR_OPERATION_MODE"
+   echo -e "$modeConf" >> "$file"
 }
