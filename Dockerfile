@@ -59,6 +59,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup4_listen="'0.0.0.0:8080'" \
     VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
     VAR_mode_fcgi=\
+"      env.set \"REQUEST_URI\" => \"%{req.header[X-Forwarded-Proto]}://%{req.host}:%{req.header[X-Forwarded-Port]}%{req.raw_path}\";\n"\
 "      balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };\n"\
 "      if request.is_handled { header.remove 'Content-Length'; }" \
     VAR_mode_normal=\
