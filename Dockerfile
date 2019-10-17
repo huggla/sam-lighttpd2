@@ -61,7 +61,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_mode_fcgi=\
 "     buffer_request_body false;\n"\
 "     strict.post_content_length false;\n"\
-"     if req.header[\"X-Forwarded-Proto\"] =^ "http" and req.header[\"X-Forwarded-Port\"] =~ "[0-9]+" {\n"\
+"     if req.header['X-Forwarded-Proto'] =^ 'http' and req.header['X-Forwarded-Port'] =~ '[0-9]+' {\n"\
 "       env.set 'REQUEST_URI' => '%{req.header[X-Forwarded-Proto]}://%{req.host}:%{req.header[X-Forwarded-Port]}%{req.raw_path}';\n"\
 "     }\n"\
 "     fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE';\n"\
