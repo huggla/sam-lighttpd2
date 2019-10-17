@@ -45,25 +45,27 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_FASTCGI_SOCKET_FILE="/run/fastcgi/fastcgi.sock" \
     VAR_LINUX_USER="www-user" \
     VAR_FINAL_COMMAND="lighttpd2 -c '\$VAR_CONFIG_DIR/angel.conf'" \
-    VAR_OPERATION_MODE="normal" \
+    VAR_OPERATION_MODE="fcgi" \
     VAR_angel1_config="'\$VAR_CONFIG_DIR/lighttpd.conf'" \
-    VAR_angel2_max_open_files="16384" \
+    VAR_angel2_max_open_files="1024" \
     VAR_angel3_copy_env="[ 'PATH' ]" \
-    VAR_angel4_allow_listen="'unix:\$VAR_HTTP_SOCKET_FILE'" \
-    VAR_angel5_allow_listen="'0.0.0.0/0:4430'" \
-    VAR_angel6_allow_listen="'0.0.0.0/0:8080'" \
-    VAR_angel7_allow_listen="'unix:\$VAR_FASTCGI_SOCKET_FILE'" \
-    VAR_setup1_module_load="[ 'mod_fastcgi', 'mod_balance' ]" \
-    VAR_setup2_listen="'unix:\$VAR_HTTP_SOCKET_FILE'" \
-    VAR_setup3_listen="'0.0.0.0:4430'" \
-    VAR_setup4_listen="'0.0.0.0:8080'" \
-    VAR_setup5_static__exclude_extensions="[ '.php', '.pl', '.fcgi', '~', '.inc' ]" \
+    VAR_angel4_max_core_file_size="0" \
+    VAR_angel5_allow_listen="'0.0.0.0/0:8080'" \
+    VAR_angel6_allow_listen="'unix:\$VAR_FASTCGI_SOCKET_FILE'" \
+    VAR_setup1_module_load="[ 'mod_fastcgi' ]" \
+    VAR_setup2_listen="'0.0.0.0:8080'" \
+    VAR_setup3_workers="1" \
+    VAR_setup4_io__timeout="120s" \
+    VAR_setup5_stat_cache__ttl="10" \
+    VAR_setup6_tasklet_pool.threads="0" \
     VAR_mode_fcgi=\
-"     if req.header[\"X-Forwarded-Proto\"] =^ "http" and req.header[\"X-Forwarded-Port\"] > 0 {\n"\
+"     buffer_request_body false;\n"\
+"     strict.post_content_length false;\n"\
+"     if req.header[\"X-Forwarded-Proto\"] =^ "http" and req.header[\"X-Forwarded-Port\"] =~ "[0-9]+" {\n"\
 "       env.set 'REQUEST_URI' => '%{req.header[X-Forwarded-Proto]}://%{req.host}:%{req.header[X-Forwarded-Port]}%{req.raw_path}';\n"\
 "     }\n"\
-"     balance.rr { fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE'; };\n"\
-"     header.remove 'Content-Length';" \
+"     fastcgi 'unix:\$VAR_FASTCGI_SOCKET_FILE';\n"\
+"     if request.is_handled { header.remove 'Content-Length'; }" \
     VAR_mode_normal=\
 "      include '\$VAR_CONFIG_DIR/mimetypes.conf';\n"\
 "      docroot '\$VAR_WWW_DIR';\n"\
