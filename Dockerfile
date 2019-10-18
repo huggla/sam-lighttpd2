@@ -3,7 +3,7 @@
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="1.0"
-ARG TAG="20191007"
+ARG TAG="20191018"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
 ARG BUILDDEPS="libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
@@ -55,7 +55,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup1_module_load="[ 'mod_fastcgi' ]" \
     VAR_setup2_listen="'0.0.0.0:8080'" \
     VAR_setup3_workers="1" \
-    VAR_setup4_io__timeout="120s" \
+    VAR_setup4_io__timeout="120" \
     VAR_setup5_stat_cache__ttl="10" \
     VAR_setup6_tasklet_pool__threads="0" \
     VAR_mode_fcgi=\
