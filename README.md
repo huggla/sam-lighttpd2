@@ -45,6 +45,7 @@ Lighttpd2 from Github master, running on Alpine. Configuration is set by given V
 * VAR_angel&lt;id&gt;_&lt;param name&gt;: Parameter in angel.conf.
 * VAR_setup&lt;id&gt;_&lt;param name&gt;: Setup parameter in lighttpd.conf.
 * Dot (.) is representated as double underscore (\_\_) in variable names.
+* Id-numbers defines the configuration order.
 
 ## Capabilities
 Can drop all but SETPCAP, SETGID and SETUID.
