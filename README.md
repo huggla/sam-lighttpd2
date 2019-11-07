@@ -4,8 +4,8 @@ Lighttpd2 on Alpine. Listens, by default, on port 8080 internally.
 All tags: Lighttpd2 master from Github, Alpine Edge.
 
 ## Environment variables
-### pre-set runtime variables
-* VAR_LINUX_USER (www-user): User running VAR_FINAL_COMMAND.
+### Runtime variables with default value
+* VAR_LINUX_USER="www-user" (User running VAR_FINAL_COMMAND)
 * VAR_CONFIG_DIR (/etc/lighttpd2): Directory containing configuration files.
 * VAR_FINAL_COMMAND (lighttpd2 -c '\$VAR_CONFIG_DIR/angel.conf'): Command run by VAR_LINUX_USER.
 * VAR_WWW_DIR (/var/www): Directory containing web content.
