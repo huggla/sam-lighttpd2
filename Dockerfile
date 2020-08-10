@@ -61,6 +61,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_setup5_stat_cache__ttl="10" \
     VAR_setup6_tasklet_pool__threads="0" \
     VAR_mode_fcgi=\
+"     docroot '\$VAR_WWW_DIR';\n"\
 "     buffer_request_body false;\n"\
 "     strict.post_content_length false;\n"\
 "     if req.header['X-Forwarded-Proto'] =^ 'http' and req.header['X-Forwarded-Port'] =~ '[0-9]+' {\n"\
