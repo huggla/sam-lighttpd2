@@ -18,5 +18,9 @@ then
    if [ ! -s "$VAR_CONFIG_DIR/mimetypes.conf" ]
    then
       zcat /mimetypes.conf.gz > "$VAR_CONFIG_DIR/mimetypes.conf"
+      if [ -n "$VAR_ADD_MIMETYPES" ]
+      then
+         sed -i "/# custom/a $VAR_ADD_MIMETYPES" "$VAR_CONFIG_DIR/mimetypes.conf"
+      fi
    fi
 fi
