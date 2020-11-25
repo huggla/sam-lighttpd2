@@ -42,6 +42,7 @@ Lighttpd2 from Github master, running on Alpine. Configuration is set by given V
 "      }"
 
 ### Format of runtime configuration variables
+* VAR_ADD_MIMETYPES: Comma-separated list of additional mimetypes (f ex. ".PDF" => "application/pdf").
 * VAR_angel&lt;id&gt;_&lt;param name&gt;: Parameter in angel.conf.
 * VAR_setup&lt;id&gt;_&lt;param name&gt;: Setup parameter in lighttpd.conf.
 * Dot (.) is representated as double underscore (\_\_) in variable names.
