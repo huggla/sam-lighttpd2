@@ -73,7 +73,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
     VAR_mode_normal=\
 "      include '\$VAR_CONFIG_DIR/mimetypes.conf';\n"\
 "      docroot '\$VAR_WWW_DIR';\n"\
-"      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html' ];\n"\
+"      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html', '/index.php' ];\n"\
 "      static;\n"\
 "      if request.is_handled {\n"\
 "         if response.header['Content-Type'] =~ '^(.*/javascript|text/.*)(;|\$)' {\n"\
