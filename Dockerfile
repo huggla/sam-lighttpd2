@@ -81,6 +81,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
 "         }\\n"\
 "      }" \
     VAR_mode_dual=\
+"      include '\$VAR_CONFIG_DIR/mimetypes.conf';\n"\
 "      docroot '\$VAR_WWW_DIR';\n"\
 "      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html', '/index.php' ];\n"\
 "      if phys.path =$ '.php' {\n"\
