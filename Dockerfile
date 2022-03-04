@@ -8,7 +8,7 @@
 ARG SaM_VERSION="2.0.6"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
-ARG BUILDDEPS="m4 gettext gettext-dev intltool libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
+ARG BUILDDEPS="libtool automake autoconf m4 gettext gettext-dev intltool libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git"
 ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
