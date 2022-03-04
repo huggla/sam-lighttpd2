@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.4"
+ARG SaM_VERSION="2.0.6"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
 ARG BUILDDEPS="libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
@@ -13,11 +13,14 @@ ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git"
 ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
 "cd lighttpd2 "\
+"&& sed -i 's/set -e/set -ex/' autogen.sh "\
+"&& sed -i 's/autoreconf --force --install/autoreconf --force --install --verbose --warnings=all/' autogen.sh "\
 "&& ./autogen.sh "\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2" '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& mv contrib/mimetypes.conf "$DESTDIR/" '\
 '&& gzip "$DESTDIR/mimetypes.conf"'
+ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
@@ -26,7 +29,8 @@ FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${CONTENTIMAGE4:-scratch} as content4
 FROM ${CONTENTIMAGE5:-scratch} as content5
-FROM ${INITIMAGE:-${BASEIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-base}} as init
+FROM ${BASEIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-base} as base
+FROM ${INITIMAGE:-scratch} as init
 # Generic template (don't edit) </END>
 
 # =========================================================================
@@ -79,6 +83,26 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
 "         if response.header['Content-Type'] =~ '^(.*/javascript|text/.*)(;|\$)' {\n"\
 "            deflate;\n"\
 "         }\\n"\
+"      }" \
+    VAR_mode_dual=\
+"      include '\$VAR_CONFIG_DIR/mimetypes.conf';\n"\
+"      docroot '\$VAR_WWW_DIR';\n"\
+"      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html', '/index.php' ];\n"\
+"      if phys.path =$ '.php' {\n"\
+"         buffer_request_body false;\n"\
+"         strict.post_content_length false;\n"\
+"         if req.header['X-Forwarded-Proto'] =^ 'http' and req.header['X-Forwarded-Port'] =~ '[0-9]+' {\n"\
+"            env.set 'REQUEST_URI' => '%{req.header[X-Forwarded-Proto]}://%{req.host}:%{req.header[X-Forwarded-Port]}%{req.raw_path}';\n"\
+"         }\n"\
+"         fastcgi 'unix:\$VAR_SOCKET_FILE';\n"\
+"         if request.is_handled { header.remove 'Content-Length'; }\n"\
+"      } else {\n"\
+"         static;\n"\
+"         if request.is_handled {\n"\
+"            if response.header['Content-Type'] =~ '^(.*/javascript|text/.*)(;|$)' {\n"\
+"               deflate;\n"\
+"            }\\n"\
+"         }\n"\
 "      }"
      
 # Generic template (don't edit) <BEGIN>
