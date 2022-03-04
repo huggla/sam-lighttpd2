@@ -5,10 +5,10 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.6"
+ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
-ARG BUILDDEPS="autoconf libtool libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
+ARG BUILDDEPS="libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git"
 ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
