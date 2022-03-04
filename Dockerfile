@@ -18,6 +18,7 @@ ARG BUILDCMDS=\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& mv contrib/mimetypes.conf "$DESTDIR/" '\
 '&& gzip "$DESTDIR/mimetypes.conf"'
+ARG REMOVEDIRS="/usr/include"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
