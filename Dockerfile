@@ -8,11 +8,12 @@
 ARG SaM_VERSION="2.0.6"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
-ARG BUILDDEPS="m4 libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
+ARG BUILDDEPS="libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
 ARG CLONEGITS="https://git.lighttpd.net/lighttpd/lighttpd2.git"
 ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
 "cd lighttpd2 "\
+"&& sed -i 's/set -e/set -ex/' autogen.sh "\
 "&& ./autogen.sh "\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2" '\
 '&& eval "$COMMON_MAKECMDS" '\
