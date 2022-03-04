@@ -14,6 +14,7 @@ ARG STARTUPEXECUTABLES="/usr/sbin/lighttpd2"
 ARG BUILDCMDS=\
 "cd lighttpd2 "\
 "&& sed -i 's/set -e/set -ex/' autogen.sh "\
+"&& sed -i 's/autoreconf --force --install/autoreconf --force --install --verbose/' autogen.sh "\
 "&& ./autogen.sh "\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2" '\
 '&& eval "$COMMON_MAKECMDS" '\
