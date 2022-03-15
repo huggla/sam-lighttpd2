@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.6-3.15"
+ARG SaM_VERSION="2.0.6"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2"
 ARG BUILDDEPS="libunwind-dev libidn-dev gnutls-dev libev-dev lua-dev ragel zlib-dev libressl-dev mailcap glib-dev"
@@ -16,8 +16,6 @@ ARG BUILDCMDS=\
 "&& sed -i 's/set -e/set -ex/' autogen.sh "\
 "&& sed -i 's/autoreconf --force --install/autoreconf --force --install --verbose --warnings=all/' autogen.sh "\
 "&& ./autogen.sh "\
-'&& ./configure --help '\
-'&& exit '\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2" '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& mv contrib/mimetypes.conf "$DESTDIR/" '\
