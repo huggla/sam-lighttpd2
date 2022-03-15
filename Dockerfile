@@ -17,6 +17,7 @@ ARG BUILDCMDS=\
 "&& sed -i 's/autoreconf --force --install/autoreconf --force --install --verbose --warnings=all/' autogen.sh "\
 "&& ./autogen.sh "\
 '&& ./configure --help '\
+'&& exit '\
 '&& eval "$COMMON_CONFIGURECMD --with-lua --with-openssl --with-kerberos5 --with-zlib --with-bzip2 --includedir=/usr/include/lighttpd2" '\
 '&& eval "$COMMON_MAKECMDS" '\
 '&& mv contrib/mimetypes.conf "$DESTDIR/" '\
