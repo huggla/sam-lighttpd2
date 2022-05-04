@@ -80,7 +80,7 @@ ENV VAR_CONFIG_DIR="/etc/lighttpd2" \
 "      index [ 'index.php', 'index.html', 'index.htm', 'default.htm', 'index.lighttpd.html', '/index.php' ];\n"\
 "      static;\n"\
 "      if request.is_handled {\n"\
-"         if response.header['Content-Type'] =~ '^(.*/javascript|text/.*)(;|\$)' {\n"\
+"         if response.header['Content-Type'] =~ '^(.*/(javascript|json)|text/.*)(;|\$)' {\n"\
 "            deflate;\n"\
 "         }\\n"\
 "      }" \
