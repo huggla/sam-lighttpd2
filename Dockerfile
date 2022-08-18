@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.6-3.15"
+ARG SaM_VERSION="2.0.6-3.16"
 ARG IMAGETYPE="application"
 ARG RUNDEPS="glib libev lua libbz2 libunwind"
 ARG BUILDDEPS="libunwind-dev libidn-dev gnutls-dev libev-dev lua-dev ragel zlib-dev openssl-dev mailcap glib-dev"
