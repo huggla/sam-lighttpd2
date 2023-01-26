@@ -1,3 +1,5 @@
+# NOTICE! This project has moved here: https://github.com/Kristianstad/lighttpd2/pkgs/container/lighttpd2
+
 # sam-lighttpd2
 Lighttpd2 from Github master, running on Alpine. Configuration is set by given VAR_angel, VAR_setup and VAR_mode variables. Add, edit och unset runtime configuration variables as you see fit (by default set to fcgi-mode and listen on port 8080 internally).
 
